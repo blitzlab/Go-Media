@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header class="masthead" style="background-image: url('/static/img/home-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Signup</h1>
+          <span class="subheading">Become a member and maximize your potential</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form method="post">
+          <div class="form-group">
+            {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+
+          {% csrf_token %}
+          <input type="submit" name="signup" value="Signup">
+        </form>
+      </div>
+    </div>
+  </div>
+</article>
+<hr>
+{% endblock %}
